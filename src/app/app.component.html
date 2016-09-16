@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-dark bg-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">Angular 2 Word Cloud</a>
@@ -6,19 +6,18 @@
   </div>
 </nav>
 <div class="row text-center">
-  <div class="container">
-    <div [hidden]="hasWordCloud" class="jumbotron text-center">
-      <h1>Welcome to Word Cloud!</h1>
-      <h3>Enter a block of text in the area below to map to a word cloud.</h3>
-      <p>
-        <textarea #textblob cols="100" rows="10"></textarea>
-      </p>
-      <p><a (click)="generateWordCloud(textblob.value)" class="btn btn-primary btn-lg" href="#" role="button">Map to Word Cloud!</a></p>
-    </div>
+  <div [hidden]="hasWordCloud" class="jumbotron text-center">
+    <h1>Welcome to Word Cloud!</h1>
+    <h3>Enter a block of text in the area below to map to a word cloud.</h3>
+    <p>
+      <textarea #textblob cols="100" rows="10"></textarea>
+    </p>
+    <p><a (click)="generateWordCloud(textblob.value)" class="btn btn-primary btn-lg" href="#" role="button">Map to Word Cloud!</a></p>
   </div>
   <div class="jumbotron" [hidden]="!hasWordCloud">
-    <span
-      [ngStyle]="{'font-size': word.fsize +'px'}"
-      *ngFor="let word of completedWordMap">{{ word.word }} </span>
+    <span 
+      [ngStyle]="{'font-size': word.fsize +'px'}" 
+      *ngFor="let word of completedWordCloud"
+    >{{ word.word }} </span>
   </div>
 </div>

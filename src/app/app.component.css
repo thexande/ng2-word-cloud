@@ -1,15 +1,4 @@
-.one {
-  font-size: 10px;
-}
-.two {
-  font-size: 15px;
-}
-.three {
-  font-size: 20px;
-}
-.four {
-  font-size: 25px;
-}
-.five {
-  font-size: 30px
+.text-center {
+  text-align: center;
+  margin: auto;
 }

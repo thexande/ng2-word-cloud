@@ -10,10 +10,12 @@ export class AppComponent {
   private _textBlob: string
   public hasWordCloud: boolean = false   
   public completedWordMap: any = []
+  public completedWordCloud: any = []
 
   public generateWordCloud(text) {
-    this._textBlob = text;
+    this._textBlob = text
     this.generateHashMap()
+    this.generateFinalWordCloud()
   }
 
   public getFontSize(count) {
@@ -24,18 +26,25 @@ export class AppComponent {
     return blob.split(" ").filter(blobWord => blobWord === word).length
   }
 
+  private generateFinalWordCloud() {
+    this._textBlob.split(" ").forEach((val, key) => {
+      let wordCount =  this._countWord(val, this._textBlob)      
+      this.completedWordCloud.push({
+        count: wordCount,
+        fsize: wordCount * 17,
+        word: val + "  "
+      })
+    })    
+  }
+
   private generateHashMap() {
     let wordMap = new Map()
     this._textBlob.split(" ").forEach((val, key) => {
       let wordCount =  this._countWord(val, this._textBlob)      
       wordMap.set(val, wordCount)     
-      this.completedWordMap.push({
-        count: wordCount,
-        fsize: wordCount * 17,
-        word: val + "  "
-      })
     })
     this.hasWordCloud = true
+    this.completedWordMap = wordMap
     console.log(wordMap);
   }
 }
