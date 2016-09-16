@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   private _textBlob: string
   public hasWordCloud: boolean = false   
-  public completedWordMap: any = []
+  public completedWordMap: Map<String, Number> 
   public completedWordCloud: any = []
 
   public generateWordCloud(text) {
@@ -29,11 +29,15 @@ export class AppComponent {
   private generateFinalWordCloud() {
     this._textBlob.split(" ").forEach((val, key) => {
       let wordCount =  this._countWord(val, this._textBlob)      
-      this.completedWordCloud.push({
-        count: wordCount,
-        fsize: wordCount * 17,
-        word: val + "  "
-      })
+      let wordExists = this.completedWordCloud.filter(i => i.word.includes(val))
+      
+      if(wordExists.length === 0) {
+        this.completedWordCloud.push({
+          count: wordCount,
+          fsize: wordCount * 17,
+          word: val + "  "
+        })
+      }
     })    
   }
 
